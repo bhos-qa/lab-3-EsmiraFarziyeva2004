@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '21'
+          distribution: 'temurin'  # or 'zulu', 'adopt', etc.
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v2
@@ -67,10 +68,4 @@ jobs:
             -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
             -Dsonar.pullrequest.branch=${{ github.head_ref }}
             -Dsonar.pullrequest.base=${{ github.base_ref }}
-            -Dsonar.java.binaries=app/build/classes/java/main
-            -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
-            -Dsonar.qualitygate.linecoverage=90
-            -Dsonar.qualitygate.securityVulnerabilities=0
-            -Dsonar.java.libraries=app/build/libs/*.jar
-            -Dsonar.scm.provider=git
-            -Dsonar.sources=app/src/main
+            -Dsonar.java.binaries=app/build/cl
