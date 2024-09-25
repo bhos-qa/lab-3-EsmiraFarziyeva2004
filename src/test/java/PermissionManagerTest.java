@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-//note
+
 public class PermissionManagerTest {
 
     @Test
@@ -16,5 +16,13 @@ public class PermissionManagerTest {
         PermissionManager manager = new PermissionManager();
         manager.setCurrentLevel(PermissionLevel.DEVELOPER);
         assertEquals("Developer", manager.getRoleName(PermissionLevel.DEVELOPER));
+    }
+
+    @Test
+    public void testGetRoleNameUnknown() {
+        PermissionManager manager = new PermissionManager();
+        // Test with an unknown level by passing a non-existent value
+        PermissionLevel unknownLevel = null; // Assuming null is not a defined PermissionLevel
+        assertEquals("Unknown", manager.getRoleName(unknownLevel));
     }
 }
