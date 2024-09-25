@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '21'
-          distribution: 'temurin'  # or 'zulu', 'adopt', etc.
+          distribution: 'temurin' 
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v2
@@ -35,32 +35,18 @@ jobs:
       - name: Run tests with Jacoco
         run: ./gradlew test jacocoTestReport
 
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@v3.0.0
-        with:
-          projectBaseDir: '.'
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
       - name: Upload Jacoco HTML report
         uses: actions/upload-artifact@v3
         with:
           name: jacoco-html-report
           path: build/reports/jacoco/test/html
 
-      - name: Upload Jacoco code coverage and run SonarCloud analysis
-        run: ./gradlew test jacocoTestReport sonarqube \
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECTKEY }} \
-          -Dsonar.organization=${{ secrets.ORGANIZATION_KEY }} \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-          -Dsonar.jacoco.reportPath=build/jacoco/test.exec
-
-      - name: SonarCloud PR Analysis
-        uses: sonarsource/sonarcloud-github-action@v2
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@v3.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
+          projectBaseDir: '.'
           args: >
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECTKEY }}
             -Dsonar.organization=${{ secrets.ORGANIZATION_KEY }}
@@ -68,4 +54,6 @@ jobs:
             -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
             -Dsonar.pullrequest.branch=${{ github.head_ref }}
             -Dsonar.pullrequest.base=${{ github.base_ref }}
-            -Dsonar.java.binaries=app/build/cl
+            -Dsonar.jacoco.reportPaths=build/jacoco/test.exec  # Adjusted report path here
+            -Dsonar.java.binaries=app/build/classes/java/main  # Ensure this path matches your project structure
+
