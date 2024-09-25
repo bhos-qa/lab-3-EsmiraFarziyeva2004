@@ -4,7 +4,7 @@ plugins {
     // Apply the JaCoCo plugin
     id("jacoco")
     // Apply the SonarQube plugin
-    id("org.sonarqube") version "3.3"
+    id("org.sonarqube") version "3.3" // Check for the latest version
 }
 
 group = "com.example" // Replace with your group name
@@ -41,7 +41,7 @@ sonarqube {
         property("sonar.projectKey", "bhos-qa_lab-3-EsmiraFarziyeva2004") // Project key for SonarCloud
         property("sonar.organization", "bhos-qa") // Your SonarCloud organization
         property("sonar.host.url", "https://sonarcloud.io") // SonarCloud URL
-        property("sonar.login", "7cc9d43866d8aad7fc6f68f7cb356ada7a12fc31") // Replace with your actual SonarCloud token
+        property("sonar.login", System.getenv("SONAR_TOKEN")) // Use environment variable for token
         property("sonar.language", "java") // Language of the project
         property("sonar.sources", "app/src/main") // Source directory for SonarCloud
         property("sonar.java.binaries", "app/build/classes/java/main") // Binaries directory for SonarCloud
