@@ -1,38 +1,35 @@
 plugins {
-    // Apply the Java plugin
     java
-    // Apply the JaCoCo plugin
     id("jacoco")
-    // Apply the SonarQube plugin
-    id("org.sonarqube") version "3.3" // Check for the latest version
+    id("org.sonarqube") version "3.3" 
 }
 
-group = "bhos-qa" // Replace with your group name
+group = "bhos-qa" 
 version = "1.0-SNAPSHOT"
 
 repositories {
-    mavenCentral() // Use Maven Central for dependencies
+    mavenCentral() 
 }
 
 dependencies {
-    implementation("org.junit.jupiter:junit-jupiter:5.8.2") // JUnit 5 for testing
+    implementation("org.junit.jupiter:junit-jupiter:5.8.2") 
 }
 
 // JaCoCo configuration
 jacoco {
-    toolVersion = "0.8.9" // Ensure you're using the correct version
+    toolVersion = "0.8.9" 
 }
 
 tasks.jacocoTestReport {
     reports {
-        xml.required.set(true) // Required for SonarCloud
-        html.required.set(true) // For local reading
+        xml.required.set(true) 
+        html.required.set(true) 
     }
 }
 
 tasks.test {
     useJUnitPlatform()
-    finalizedBy(tasks.jacocoTestReport) // Ensure the JaCoCo report runs after tests
+    finalizedBy(tasks.jacocoTestReport)
 }
 
 // SonarQube configuration
