@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '21'
-          distribution: 'temurin' 
+          distribution: 'temurin'
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v2
@@ -47,13 +47,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           projectBaseDir: '.'
-          args: >
+          args: |
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECTKEY }}
             -Dsonar.organization=${{ secrets.ORGANIZATION_KEY }}
             -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
-            -Dsonar.pullrequest.branch=${{ github.head_ref }}
-            -Dsonar.pullrequest.base=${{ github.base_ref }}
-            -Dsonar.jacoco.reportPaths=build/jacoco/test.exec  # Adjusted report path here
-            -Dsonar.java.binaries=app/build/classes/java/main  # Ensure this path matches your project structure
-
+            -Dsonar.jacoco.reportPaths=build/jacoco/test.exec  # Make sure this is the correct path
+            -Dsonar.java.binaries=app/build/classes/java/main  # Ensure this path matches your project
