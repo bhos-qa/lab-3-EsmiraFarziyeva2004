@@ -1,14 +1,13 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MainTest {
-
+    
     @Test
     public void testMain() {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -19,7 +18,8 @@ public class MainTest {
         Main.main(new String[]{});
 
         System.setOut(originalOut);
-        String output = outputStream.toString().trim();
-        assertEquals("Hello world!", output);
+
+        String expectedOutput = "Hello world!\n"; 
+        assertEquals(expectedOutput, outputStream.toString());
     }
 }
