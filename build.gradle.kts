@@ -7,7 +7,7 @@ plugins {
     id("org.sonarqube") version "3.3" // Check for the latest version
 }
 
-group = "com.example" // Replace with your group name
+group = "bhos-qa" // Replace with your group name
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -43,9 +43,9 @@ sonarqube {
         property("sonar.host.url", "https://sonarcloud.io") // SonarCloud URL
         property("sonar.login", System.getenv("SONAR_TOKEN")) // Use environment variable for token
         property("sonar.language", "java") // Language of the project
-        property("sonar.sources", "app/src/main") // Source directory for SonarCloud
-        property("sonar.java.binaries", "app/build/classes/java/main") // Binaries directory for SonarCloud
-        property("sonar.java.libraries", "app/build/libs/*.jar") // Libraries path for SonarCloud
-        property("sonar.coverage.jacoco.xmlReportPaths", "app/build/reports/jacoco/test/jacocoTestReport.xml") // JaCoCo report path
+        property("sonar.sources", "src/main/java") // Source directory for SonarCloud
+        property("sonar.java.binaries", "build/classes/java/main") // Binaries directory for SonarCloud
+        property("sonar.java.libraries", "build/libs/*.jar") // Libraries path for SonarCloud
+        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml") // JaCoCo report path
     }
 }
