@@ -1,28 +1,25 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MainTest {
-
+    
     @Test
-    public void testMainOutput() {
-        // Arrange
+    public void testMain() {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream originalOut = System.out; 
-        System.setOut(new PrintStream(outputStream)); 
+        PrintStream originalOut = System.out;
 
-        // Act
+        System.setOut(new PrintStream(outputStream));
+
         Main.main(new String[]{});
 
-        // Assert
-        assertEquals("Hello, world!\n", outputStream.toString()); 
-
-        // Restore original System.out
         System.setOut(originalOut);
+
+        String expectedOutput = "Hello world!\n"; 
+        assertEquals(expectedOutput, outputStream.toString());
     }
 }
