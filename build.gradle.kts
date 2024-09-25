@@ -38,14 +38,13 @@ tasks.test {
 // SonarQube configuration
 sonarqube {
     properties {
-        property("sonar.projectKey", "bhos-qa_lab-3-EsmiraFarziyeva2004") // Project key for SonarCloud
-        property("sonar.organization", "bhos-qa") // Your SonarCloud organization
-        property("sonar.host.url", "https://sonarcloud.io") // SonarCloud URL
-        property("sonar.login", System.getenv("SONAR_TOKEN")) // Use environment variable for token
-        property("sonar.language", "java") // Language of the project
-        property("sonar.sources", "src/main/java") // Source directory for SonarCloud
-        property("sonar.java.binaries", "build/classes/java/main") // Binaries directory for SonarCloud
-        property("sonar.java.libraries", "build/libs/*.jar") // Libraries path for SonarCloud
-        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml") // JaCoCo report path
+        property("sonar.projectKey", "bhos-qa_lab-3-EsmiraFarziyeva2004")
+        property("sonar.organization", "bhos-qa")
+        property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.login", "7cc9d43866d8aad7fc6f68f7cb356ada7a12fc31")
+        property("sonar.sources", "src/main/java") // Updated to reflect the correct path
+        property("sonar.java.binaries", "build/classes/java/main")
+        property("sonar.java.libraries", "build/libs/*.jar")
+        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml")
     }
 }
