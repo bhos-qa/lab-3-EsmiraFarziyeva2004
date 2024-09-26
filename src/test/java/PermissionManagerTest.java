@@ -15,14 +15,26 @@ public class PermissionManagerTest {
     @Test
     public void testSetCurrentLevel() {
         PermissionManager manager = new PermissionManager();
-        
+
         manager.setCurrentLevel(PermissionLevel.ADMIN);
         assertEquals(PermissionLevel.ADMIN, manager.getCurrentLevel());
-        
+
         manager.setCurrentLevel(PermissionLevel.DEVELOPER);
         assertEquals(PermissionLevel.DEVELOPER, manager.getCurrentLevel());
         
+        
         manager.setCurrentLevel(PermissionLevel.USER);
         assertEquals(PermissionLevel.USER, manager.getCurrentLevel());
+    }
+
+    @Test
+    public void testGetRoleNameWithInvalidLevel() {
+        PermissionManager manager = new PermissionManager();
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            manager.getRoleName(null);
+        });
+
+        assertEquals("Unknown PermissionLevel", exception.getMessage());
     }
 }
